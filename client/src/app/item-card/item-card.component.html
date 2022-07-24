@@ -1,0 +1,19 @@
+<mat-card class="card">
+    <mat-card-header>
+      <mat-card-title >{{productsToShow.name}}</mat-card-title>
+      <mat-card-subtitle>{{productsToShow.price}}$</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{productsToShow.imgUrl}}>
+    <mat-card-content style="text-align: center">
+      <h2>
+        Order now your favorite team's kit!
+      </h2>
+    </mat-card-content>
+    <mat-card-actions *ngIf="(accountService.currentUser$ | async)" style="text-align: center">
+      <button mat-stroked-button  (click)="placeOrder(productsToShow)" color="success" type="submit" >Place Order</button> 
+    </mat-card-actions>
+
+    <mat-card-actions *ngIf="(accountService.currentUser$ | async) === null" style="text-align: center">
+      <button mat-stroked-button>Please login to order</button>
+    </mat-card-actions>
+  </mat-card>

@@ -1,0 +1,13 @@
+<div class="register-container">
+    <div *ngIf="!registerMode" style='text-align: center;'>
+        <h1>Welcome to my EcommApp</h1>
+        <p class="lead">Please sign up</p>
+        <div class="text-center">
+            <button (click)="registerToggle()" mat-stroked-button color="success" mat-raised-button>Register</button>
+        </div>
+    </div>
+
+    <div *ngIf="registerMode"  style='text-align: center;'>
+            <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+    </div>
+</div>

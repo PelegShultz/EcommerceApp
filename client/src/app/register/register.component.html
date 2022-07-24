@@ -1,0 +1,19 @@
+<form style="text-align: center; margin-top: 40px;" #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+    <h2 class="headr">Sign Up</h2>
+    <div>
+    <input class="inputField"
+      name="username"
+      [(ngModel)]="model.username"
+      type="text" 
+      placeholder="Username">
+    </div>
+    <input class="inputField"
+      name="password"
+      [(ngModel)]="model.password"
+      type="password" 
+      placeholder="Pssword">
+      <div class="text-center">
+        <button mat-stroked-button color="success" type="submit">Register</button>
+        <button (click)="cancel()" mat-stroked-button color="warm" >Cancel</button>
+    </div>    
+  </form>

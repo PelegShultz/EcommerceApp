@@ -1,0 +1,10 @@
+<mat-card class="card">
+    <mat-card-title-group>
+      <mat-card-title>{{ordersToShow.orderStatus}}</mat-card-title>
+      <mat-card-subtitle>{{ordersToShow.price}}$</mat-card-subtitle>
+      <img mat-card-lg-image src={{ordersToShow.imgUrl}} >
+    </mat-card-title-group>
+    <mat-card-content>
+      Order ID: {{ordersToShow.orderId}}
+    </mat-card-content>
+  </mat-card>

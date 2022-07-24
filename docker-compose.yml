@@ -1,0 +1,134 @@
+version: '3.4'
+
+volumes:
+    datafiles:
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+        - "15672:15672"
+        - "5672:5672"
+
+  db:
+    image: mysql:8.0.0
+    restart: always
+    volumes:
+        - datafiles:/var/lib/mysql
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+
+  usersService:
+    image: ${DOCKER_REGISTRY-}api
+    restart: always
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    depends_on:
+        - db
+    ports:
+        - "5000:80"
+        - "5001:443"
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+  
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    restart: always
+    build:
+      context: .
+      dockerfile:  APIGateway.Ocelot/Dockerfile
+    ports:
+        - "5020:80"
+        - "5021:443"
+  
+  orderService:
+    image: ${DOCKER_REGISTRY-}orderservice
+    restart: always
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    depends_on:
+        - db
+        - rabbitmq
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+    ports:
+        - "5050:80"
+        - "5051:443"
+          
+  balanceService:
+    image: ${DOCKER_REGISTRY-}balanceservice
+    restart: always
+    build:
+      context: .
+      dockerfile: BalanceService/Dockerfile
+    depends_on:
+        - db
+        - rabbitmq
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+    ports:
+        - "5070:80"
+        - "5071:443"
+
+  marketplaceService:
+    image: ${DOCKER_REGISTRY-}marketplaceservice
+    restart: always
+    build:
+      context: .
+      dockerfile: MarketplaceService/Dockerfile
+    depends_on:
+        - db
+        - rabbitmq
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+    ports:
+        - "5090:80"
+        - "5091:443"
+
+  shipmentService:
+    image: ${DOCKER_REGISTRY-}shipmentservice
+    restart: always
+    build:
+      context: .
+      dockerfile: ShipmentService/Dockerfile
+    depends_on:
+        - db
+        - rabbitmq
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+    ports:
+        - "6000:80"
+        - "6001:443"
+        
+  stockService:
+    image: ${DOCKER_REGISTRY-}stockservice
+    restart: always
+    build:
+      context: .
+      dockerfile: StockService/Dockerfile
+    depends_on:
+        - db
+        - rabbitmq
+    environment:
+        - DBHOST=db
+        - DBPASSWORD=secret
+        - ASPNETCORE_ENVIRONMNET=Development
+    ports:
+        - "6020:80"
+        - "6021:443"

@@ -1,0 +1,5 @@
+<div *ngFor="let order of orders">
+    <app-orders-card [ordersToShow]="order"></app-orders-card>
+</div>
+<h1 *ngIf="(accountService.currentUser$ | async) === null" style="text-align: center">Please login to see your orders</h1>
+<h1 *ngIf="(accountService.currentUser$ | async) !== null && orders.length==0" style="text-align: center">You have no previous orders</h1>

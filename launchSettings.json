@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "lunch": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "usersService",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "apigateway": "StartDebugging",
+        "usersService": "StartDebugging"
+      }
+    }
+  }
+}

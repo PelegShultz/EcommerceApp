@@ -1,0 +1,53 @@
+
+    <mat-toolbar color="primary">
+      <mat-toolbar-row >
+      <span class="title">My Ecomm App</span>
+      <a mat-button class="navButtons" routerLink="/">
+        <mat-icon>shopping_cart</mat-icon>
+        Marketplace
+      </a>
+      <a mat-button class="navButtons active" routerLink="/orders">
+        <mat-icon>list_alt</mat-icon>
+        Orders
+      </a> 
+      <a *ngIf="(accountService.currentUser$ | async) === null" mat-button class="navButtons" routerLink="/register">
+        <mat-icon>person_add</mat-icon>
+        Register
+      </a>
+      <span class="example-spacer"></span>
+
+      <a mat-stroked-button color="success" [matMenuTriggerFor]="dropdown" *ngIf="accountService.currentUser$ | async as user">
+        Welcome {{user.userName}}! 
+      </a>
+      <mat-menu #dropdown>
+        
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+
+
+        <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+          <input class="inputField"
+            name="username"
+            [(ngModel)]="model.username"
+            type="text" 
+            placeholder="Username">
+          <input class="inputField"
+            name="password"
+            [(ngModel)]="model.password"
+            type="password" 
+            placeholder="Pssword">
+          <button mat-stroked-button color="success" type="submit">Login</button>     
+        </form>
+
+      </mat-toolbar-row>
+      <mat-toolbar-row #sidenav *ngIf="accountService.currentUser$ | async">
+        <span class="example-spacer"></span>
+        <span>Balance: {{balance}}$</span>
+        </mat-toolbar-row>
+  
+
+  
+    </mat-toolbar>
+    <router-outlet>
+    </router-outlet>
+  

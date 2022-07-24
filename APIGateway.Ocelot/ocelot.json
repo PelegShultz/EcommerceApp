@@ -1,0 +1,169 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/users", //the downstream app which we are going to call
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "usersService",
+          "Port": 80 //the port of the application
+        }
+      ],
+      "UpstreamPathTemplate": "/users",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "usersService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/users/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "usersService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/login",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "usersService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/register",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+
+    {
+      "DownstreamPathTemplate": "/marketplace.api/marketplace/placeorder",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "marketplaceService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/marketplace/placeorder",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/marketplace.api/product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "marketplaceService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/product",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/marketplace.api/product/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "marketplaceService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/product/{id}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/orders.api/order/{username}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orderService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/order/{username}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/balance.api/balance/{username}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "balanceService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/balance/{username}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/signalServer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "balanceService",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/signalServer",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    }
+
+  ],
+  "GlobalConfiguration": {
+    //"BaseUrl": "http://localhost:5020" //the url where this ocelot api gateway would be running
+  }
+}

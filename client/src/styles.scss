@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.example-spacer {
+  left: 2000 px;
+  flex: 1 1 auto;
+}
+.mat-toolbar.mat-primary {
+  background: linear-gradient(#000000, #403f3f);;
+  color: #fff;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.container {
+  width: 30%;
+}
+
+/*.username {
+width: 100%;
+}
+.password {
+width: 100%;
+}*/
+.example-container {
+margin-left: 8px;
+font-size: 14px;
+}
